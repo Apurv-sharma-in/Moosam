@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+    
+    <title>Weather</title>
+</head>
+<body>
+    <section class="weather">
+    <div  class="card">
+        
+        <h3 > <i class="fa-solid fa-location-dot"></i> Delhi</h3>
+        <p id="weather">Loading..</p>
+        <h1 id="temp">N /A <sup>o</sup>C </h1>
+        <img src="" alt="Image" id="img">
+        <button id="button" onclick="refresh()" ><i class="fa-solid fa-rotate"></i></button>
+    </div>
+    
+</section>
+<div class="cloud">
+    <img class="img_one" src="/cloud.png" alt="">
+    <img class="img_two" src="/cloud.png" alt="">
+    <img class="img_three" src="/cloud.png" alt="">
+    <img class="img_four" src="/cloud.png" alt="">
+    <img class="img_five" src="/cloud.png" alt="">
+    <img class="img_six" src="/cloud.png" alt="">
+
+</div>
+
+
+    <script src="jquery.js" ></script>
+    <script>
+       
+        function refresh(){
+            location.reload();
+        }
+
+      var url = `https://api.openweathermap.org/data/2.5/weather?q=Delhi&units=metric&exclude=daily&appid=9fe099c984cd62c248591f31248c7f3e`;
+            
+     var Request = new XMLHttpRequest();
+            Request.open("GET", url , true);
+            Request.onload = function(){
+                var obj = JSON.parse(Request.response);
+                
+
+                document.getElementById("weather").innerHTML = obj.weather[0].main;
+                document.getElementById("temp").innerHTML =Math.round(obj.main.temp) + `<sup>o</sup>C`;
+                document.getElementById("img").src = `https://openweathermap.org/img/wn/` +obj.weather[0].icon +  `@2x.png`;
+
+
+                
+                
+                if(Request.status >= 200 && Request.status < 400){
+                    console.log(obj );
+    
+                }
+                else{
+                    console.log("error");
+                }
+            
+            };    
+            Request.send();
+
+    </script>
+</body>
+</html>

@@ -40,7 +40,9 @@
     width: 3rem;
 }
 
-button{
+.refresh{
+    width: 200px;
+    height: 50 px;
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
     border: none;
@@ -54,8 +56,7 @@ button{
         left: 50%;
         transform: translate(-50%,-50%);    
         z-index: 1;
-
-    }
+}
 .img_two{
     position: absolute;
     bottom: -10%;
